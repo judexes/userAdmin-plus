@@ -1,0 +1,55 @@
+<div class="w-full flex flex-col space-y-5">
+    <span class="text-lg font-light text-gray-500 text-center">
+        Use the following form to login into your user account
+    </span>
+    <form class="w-full" [formGroup]="loginForm" (submit)="login()">
+        <div class="relative z-0 mb-6 w-full group">
+            <input type="email" name="email" id="email" formControlName="email"
+                class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-400 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-400 peer"
+                placeholder=" " [ngClass]="{'border-red-500': !loginForm.controls['email'].pristine && !loginForm.controls['email'].valid}" />
+            <label for="email"
+                class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-400 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
+                [ngClass]="{'text-red-500': !loginForm.controls['email'].pristine && !loginForm.controls['email'].valid}">
+                Email address
+            </label>
+            <span class="text-xs text-red-500" *ngIf="!loginForm.controls['email'].pristine && loginForm.controls['email'].hasError('required')">
+                <fa-icon [icon]="faTriangleExclamation"></fa-icon> The email address field is required
+            </span>
+            <span class="text-xs text-red-500" *ngIf="!loginForm.controls['email'].pristine && loginForm.controls['email'].hasError('email')">
+                <fa-icon [icon]="faTriangleExclamation"></fa-icon> This field must be a valid email address
+            </span>
+        </div>
+        <div class="relative z-0 mb-6 w-full group">
+            <input type="password" name="password" id="password" formControlName="password"
+                class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-400 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-400 peer"
+                placeholder=" " [ngClass]="{'border-red-500': !loginForm.controls['password'].pristine && !loginForm.controls['password'].valid}" />
+            <label for="password"
+                class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-400 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
+                [ngClass]="{'text-red-500': !loginForm.controls['password'].pristine && !loginForm.controls['password'].valid}">
+                Password
+            </label>
+            <span class="text-xs text-red-500" *ngIf="!loginForm.controls['password'].pristine && loginForm.controls['password'].hasError('required')">
+                <fa-icon [icon]="faTriangleExclamation"></fa-icon> The password field is required
+            </span>
+        </div>
+        <button type="submit"
+            class="w-full text-white bg-blue-500 hover:bg-blue-600 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded text-sm px-5 py-2.5 text-center dark:bg-blue-400 dark:hover:bg-blue-500 dark:focus:ring-blue-600 shadow hover:shadow-lg uppercase">
+            Login
+        </button>
+    </form>
+    <p class="pb-5 text-gray-500 text-sm font-base text-center w-full">
+        Did you forget your password?
+        <br>
+        No worries
+        <a [routerLink]="['/auth/forgot-password']" class="text-blue-500 hover:underline">
+            Click here to recover it
+        </a>
+    </p>
+    <hr />
+    <p class="pt-10 text-gray-500 text-sm font-base text-center w-full">
+        Don't have an account?
+        <a [routerLink]="['/auth/register']" class="text-blue-500 hover:underline">
+            Register for free!
+        </a>
+    </p>
+</div>
